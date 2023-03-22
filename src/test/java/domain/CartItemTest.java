@@ -48,6 +48,20 @@ class CartItemTest {
   }
 
   @Test
+  @DisplayName("Test addQuantityBy should return expected quantity when product with a quantity is already present in cart item")
+  void testAddQuantityBy_ShouldReturnTrueWhenGivenDifferentProduct() {
+    //Given
+    product = new Product("cornflakes", new BigDecimal("10"));
+    cartItem = new CartItem(product, 1);
+
+    //When
+    CartItem actualCartItem = cartItem.addQuantityBy(2);
+
+    //Then
+    Assertions.assertEquals(3, actualCartItem.getQuantity());
+  }
+
+  @Test
   @DisplayName("Test calculateTotalAmount should return 20.02 when cart items has 2 quantity of cornflakes with 10.01 unit price")
   void testCalculateTotalAmount_ShouldReturnTotalAmountWhenCartItemHasTwoQuantities() {
     //Given

@@ -65,6 +65,6 @@ I am believer of evolutionary design, in which things gets improved iteration by
 
 # Ambiguity
 * One could say ShoppingCart.java should haven't the capability to calculate total payable. I will not disagree with that for now but it's subjective. Hence, we can refactor it later.
-* Integrating REST client to fetch product price for product's API.
+* Integrating REST client to fetch product price from product's GET API. I was confused whether to fetch product price programmatically or not. For now, I am assuming this code will be used a library & that [ProductFactory.java](src%2Fmain%2Fjava%2Ffactory%2FProductFactory.java) will be used by library's client to create product. Yes, I know it feels like unused code for now.
 * One could have also said that I could have taken a Map of product with quantity, but I feel having a domain model instead of primitive data structure is better.
 * Mocking in unit tests. So there are 2 school of thoughts over that & Martin Fowler suggest to not do mocking in unit tests of model  
