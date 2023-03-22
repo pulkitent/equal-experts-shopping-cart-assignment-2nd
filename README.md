@@ -41,25 +41,32 @@ Results
 * Tax = 1.88
 * Total = 16.90
 
+
+# Running the app locally
+The basic codebase structure is set up with gradle You can open this project in Intellij and work on it.
+To run unit tests run on the command line
+
+`./gradlew test`
+
 # Philosophy
 I am believer of evolutionary design, in which things gets improved iteration by iteration on refactoring
 
 
 # Things I have tried to cover
 * I have tried to add all the required domain entities/models as per the problem statement.
-* I didn't make interfaces as per YAGNI principles because for now, I don't feel the need for the same. Yes, I am aware of this principle also - "Program to interfaces rather than concrete implementation".
+* I didn't make interfaces as per **YAGNI** principles because for now, I don't feel the need for the same. Yes, I am aware of this principle also - "Program to interfaces rather than concrete implementation".
 * I have avoided breaking encapsulation by putting all the related methods & states together.
 * I have created immutable states with value objects wherever possible (also avoided setters).
-* I have added readable methods & variables naming to clear the intention (4 rules of simple design).
+* I have added readable methods & variables naming to clear the intention (**4 rules of simple design**).
 * I have used BigDecimal to avoid precision issue while doing financial calculation.
-* I have added independent unit tests in "Given When Then" format with 100% coverage & with mocking wherever required & possible.
-* I have used dependency injection as much as possible.
+* I have added independent unit tests in **"Given When Then"** format with 100% coverage & with mocking wherever required & possible.
+* I have used **dependency injection** as much as possible.
 
 
 # Things I could have covered if given more time
 * I could have added an integration level test by mocking external API call.
-* I could have done better exception handling if product API calls gives non 200 response. Personally I don't like throwing exceptions. I generally follow Martins Fowler's Notification pattern but for nwo it's an overkill.
-* I could have done better validation of input data & follow Martin Fowler's notification pattern.
+* I could have done better exception handling if product API calls gives non 200 response. Personally I don't like throwing exceptions. I generally follow **Martins Fowler's Notification pattern** but for now it's an overkill.
+* I could have done better validation of input data & follow **Martin Fowler's notification pattern**.
 * I could have cached the response of product API but for now it feels like an overkill.
 
 
