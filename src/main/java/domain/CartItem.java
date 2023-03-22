@@ -1,5 +1,6 @@
 package domain;
 
+import java.math.BigDecimal;
 import java.util.Objects;
 
 public class CartItem {
@@ -35,6 +36,12 @@ public class CartItem {
 
   protected CartItem addQuantityBy(int quantity) {
     return new CartItem(this.getProduct(), this.getQuantity() + quantity);
+  }
+
+  protected BigDecimal calculateTotalAmount() {
+    return this.getProduct()
+        .getPrice()
+        .multiply(BigDecimal.valueOf(this.getQuantity()));
   }
 
   protected Product getProduct() {

@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.math.BigDecimal;
 
+import static org.mockito.Mockito.when;
+
 @ExtendWith(MockitoExtension.class)
 class CartItemTest {
   private CartItem cartItem;
@@ -43,6 +45,21 @@ class CartItemTest {
 
     //Then
     Assertions.assertFalse(result);
+  }
+
+  @Test
+  @DisplayName("Test calculateTotalAmount should return 20.02 when cart items has 2 quantity of cornflakes with 10.01 unit price")
+  void testCalculateTotalAmount_ShouldReturnTotalAmountWhenCartItemHasTwoQuantities() {
+    //Given
+    cartItem = new CartItem(mockProduct, 2);
+    when(mockProduct.getPrice()).thenReturn(new BigDecimal("10.01"));
+    BigDecimal expectedTotalAmount = new BigDecimal("20.02");
+
+    //When
+    BigDecimal actualTotalAmount = cartItem.calculateTotalAmount();
+
+    //Then
+    Assertions.assertEquals(expectedTotalAmount, actualTotalAmount);
   }
 
   @Test
