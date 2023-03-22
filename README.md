@@ -1,50 +1,10 @@
-# Instructions for the assignment
-1. Clone this repository on your machine.
-1. Use your IDE of choice to complete the assignment.
-1. When you are finished with the solution and have pushed it to the repo, [you can submit the assignment here](https://app.snapcode.review/submission_links/699510c6-a7a1-439f-968b-8005aa54126a).
-
-# About the task
-
-We’ll be using a simple shopping cart, similar to those used by e-commerce websites, as the domain for this problem.
-
-There’s no time limit for this task. We expect that you can give a representative piece of code in 1-2 hours.
-
-## Tips on what we’re looking for
-
-### 1. Test coverage
-
-Your solution should:
-
-- be developed 'test-first'
-- have good unit tests
-- cover common paths
-- be self-contained and not rely on external systems when running tests. Use fakes/ mocks/ stubs as you see fit.
-- in a "real" project integration tests may use a network could run over the network but this is *not required* for this assessment.
-
-### 2. Simplicity
-
-We value simplicity as an architectural virtue and a development practice. Solutions should reflect the difficulty of the assigned task, and shouldn’t be overly complex. We prefer simple, well tested solutions over clever solutions.
-
-Please avoid:
-- A web, desktop, command line or any other kind of app
-- Unnecessary layers of abstraction
-- Unnecessary patterns/ architectural features that aren’t called for
-
-### 3. Self-explanatory code
-
-The solution you produce must speak for itself. Multiple paragraphs explaining the solution is a sign that the code isn’t straightforward enough to understand on its own.
-
-### 4. Dealing with ambiguity
-
-If there’s any ambiguity, please add this in a section at the bottom of the README. You should also make a choice to resolve the ambiguity.
-
-# Begin the task
+# Problem statement
 
 Create a shopping cart ***package*** that facilitates 2 basic capabilities.
 
 1. Add a product to the cart
    1. Specifying the product name and quantity
-   2. Use the product name to discover the price from the [Product API](#product-api) specified below
+   2. Use the product name to discover the price from the Product API specified below
    3. Cart state (totals, etc.) must be available
 
 2. Calculate the state:
@@ -53,7 +13,6 @@ Create a shopping cart ***package*** that facilitates 2 basic capabilities.
    3. Total payable (subtotal + tax)
    4. Totals should be rounded up where required
 
-## Product API
 
 Base URL: `https://equalexperts.github.io/`
 
@@ -66,17 +25,46 @@ Available products
 * `shreddies`
 * `weetabix`
 
-## Example
+
+Example
 The below is a sample with the correct values you can use to confirm your calculations
 
-### Inputs
+Inputs
 * Add 1 × cornflakes @ 2.52 each
 * Add another 1 x cornflakes @2.52 each
 * Add 1 × weetabix @ 9.98 each
-  
-### Results  
+
+Results
 * Cart contains 2 x cornflakes
 * Cart contains 1 x weetabix
 * Subtotal = 15.02
 * Tax = 1.88
 * Total = 16.90
+
+# Philosophy
+I am believer of evolutionary design, in which things gets improved iteration by iteration on refactoring
+
+
+# Things I have tried to cover
+* I have tried to add all the required domain entities/models as per the problem statement.
+* I didn't make interfaces as per YAGNI principles because for now, I don't feel the need for the same. Yes, I am aware of this principle also - "Program to interfaces rather than concrete implementation".
+* I have avoided breaking encapsulation by putting all the related methods & states together.
+* I have created immutable states with value objects wherever possible (also avoided setters).
+* I have added readable methods & variables naming to clear the intention (4 rules of simple design).
+* I have used BigDecimal to avoid precision issue while doing financial calculation.
+* I have added independent unit tests in "Given When Then" format with 100% coverage & with mocking wherever required & possible.
+* I have used dependency injection as much as possible.
+
+
+# Things I could have covered if given more time
+* I could have added an integration level test by mocking external API call.
+* I could have done better exception handling if product API calls gives non 200 response. Personally I don't like throwing exceptions. I generally follow Martins Fowler's Notification pattern but for nwo it's an overkill.
+* I could have done better validation of input data & follow Martin Fowler's notification pattern.
+* I could have cached the response of product API but for now it feels like an overkill.
+
+
+# Ambiguity
+* One could say ShoppingCart.java should haven't the capability to calculate total payable. I will not disagree with that for now but it's subjective. Hence, we can refactor it later.
+* Integrating REST client to fetch product price for product's API.
+* One could have also said that I could have taken a Map of product with quantity, but I feel having a domain model instead of primitive data structure is better.
+* Mocking in unit tests. So there are 2 school of thoughts over that & Martin Fowler suggest to not do mocking in unit tests of model  
